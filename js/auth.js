@@ -11,6 +11,11 @@
             username: "Horacio",
             password: "SanJuan01*",
             role: "user"
+        },
+        {
+            username: "User",
+            password: "SanJuan#01",
+            role: "user"
         }
     ];
     

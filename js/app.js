@@ -164,7 +164,7 @@ function exportToXLS() {
         sheetColWidth: [20, 30, 15, 15, 15, 15, 20, 20, 25, 25] // Ajusta valores
     });
     XLSX.writeFile(wb, 'codigos.xlsx');
-  }
+}
 
 // Imprimir códigos de barras
 document.querySelector('#print-barcode-btn').addEventListener('click', printBarcodes);
