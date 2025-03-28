@@ -1,0 +1,34 @@
+{
+    "name": "codegenerator", // Nombre del proyecto
+    "version": "1.0.0", // Versión del proyecto
+    "description": "Generador de código", // Descripción breve
+    "main": "dist/index.js", // Archivo principal (puede variar según tu configuración)
+    "scripts": {
+      "build": "npm run clean && npm run compile", // Comando para construir el proyecto
+      "clean": "rimraf dist", // Elimina la carpeta dist antes de construir (si estás usando rimraf)
+      "compile": "webpack --config webpack.config.js" // Si usas webpack, se compila el código
+    },
+    "dependencies": {
+      "some-package": "^1.0.0", // Aquí agregas tus dependencias principales
+      "another-package": "^2.0.0"
+    },
+    "devDependencies": {
+      "webpack": "^5.0.0", // Aquí se agregan las dependencias de desarrollo como webpack
+      "webpack-cli": "^4.0.0", // Si estás usando Webpack CLI
+      "rimraf": "^3.0.0" // Si usas rimraf para eliminar carpetas
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Zonerlf/codegenerator" // URL de tu repositorio
+    },
+    "keywords": [
+      "code", "generator", "project" // Palabras clave de tu proyecto
+    ],
+    "author": "Tu Nombre", // Tu nombre o el del autor del proyecto
+    "license": "MIT", // Licencia del proyecto
+    "bugs": {
+      "url": "https://github.com/Zonerlf/codegenerator/issues" // URL para reportar problemas
+    },
+    "homepage": "https://github.com/Zonerlf/codegenerator" // Página principal del proyecto
+  }
+  
