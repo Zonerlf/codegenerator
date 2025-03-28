@@ -6,15 +6,9 @@
     "scripts": {
       "build": "echo 'No build steps required for a static site'"
     },
-    "author": "Abraham López",
+    "author": "Abraham Lopez",
     "license": "MIT",
-    "dependencies": {
-      // Agrega tus dependencias aquí si las tienes, por ejemplo:
-      // "axios": "^0.21.1"
-    },
-    "devDependencies": {
-      // Si tienes herramientas de desarrollo, como linters o cosas por el estilo:
-      // "eslint": "^7.32.0"
-    }
+    "dependencies": {},
+    "devDependencies": {}
   }
   
