@@ -88,14 +88,14 @@
                 document.getElementById('current-user').textContent = currentUser.username;
             } else {
                 // Si no hay usuario, redirigir al login
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             }
         });
         
         function logout() {
             if(confirm('¿Estás seguro que deseas cerrar la sesión?')) {
                 sessionStorage.removeItem('currentUser');
-                window.location.href = 'login.html';
+                window.location.href = 'index.html';
             }
         }
     </script>
