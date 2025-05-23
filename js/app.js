@@ -323,7 +323,7 @@ function printQRs() {
                         align-items: center;
                         width: 10cm;
                         height: 8cm;
-                        padding: 3mm;
+                        padding: 5mm;
                         box-sizing: border-box;
                     }
                     .qr-right {
@@ -331,11 +331,11 @@ function printQRs() {
                         flex-direction: column;
                         justify-content: center;
                         padding: 3mm;
-                        width: 70%;
+                        width: 65%;
                         height: 100%;
                     }
                     img {
-                        height: 87%;
+                        height: 80%;
                         width: auto;
                         object-fit: contain;
                         border: none;
