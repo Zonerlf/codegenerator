@@ -323,19 +323,19 @@ function printQRs() {
                         align-items: center;
                         width: 10cm;
                         height: 8cm;
-                        padding: 0;
+                        padding: 3mm;
                         box-sizing: border-box;
                     }
                     .qr-right {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        padding-left: 1mm;
-                        width: 65%;
+                        padding: 3mm;
+                        width: 70%;
                         height: 100%;
                     }
                     img {
-                        height: 100%;
+                        height: 90%;
                         width: auto;
                         object-fit: contain;
                         border: none;
