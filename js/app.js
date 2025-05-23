@@ -335,7 +335,7 @@ function printQRs() {
                         height: 100%;
                     }
                     img {
-                        height: 90%;
+                        height: 87%;
                         width: auto;
                         object-fit: contain;
                         border: none;
