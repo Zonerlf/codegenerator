@@ -55,7 +55,7 @@ function populateTable(data) {
         const qrData = {
             code: row[0],
             description: row[1],
-            date: formatDate(row[2]),
+            date: formatDate(row[2]), 
             invoice: row[3],
             oc: row[4],
             register: row[5],
@@ -291,56 +291,38 @@ function printQRs() {
                     @page {
                         margin: 0;
                     }
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 0;
-                    }
-                    .page {
-                        display: grid;
-                        grid-template-columns: repeat(2, 10.1cm);
-                        grid-template-rows: repeat(3, 8.4cm);
+                    body { font-family: Arial, sans-serif; margin: 0; }
+                    .page { 
+                        display: grid; 
+                        grid-template-columns: repeat(3, 7.8cm); 
+                        grid-template-rows: repeat(10, 2.9cm); 
                         column-gap: 6mm;
                         row-gap: 0mm;
-                        width: 21.6cm;
-                        height: 27.9cm;
-                        page-break-after: always;
-                        padding: 15mm 3mm;
-                        box-sizing: border-box;
+                        width: 21.59cm;
+                        height: 27.94cm;
+                        page-break-after: always; 
+                        padding: 15mm 3mm; 
+                        box-sizing: border-box; 
                     }
-                    .qr-container {
-                        display: flex;
-                        border: 1px solid #ccc;
-                        padding: 2px;
-                        margin: 0;
-                        height: 8.4cm;
-                        width: 10.1cm;
-                        box-sizing: border-box;
+                    .barcode-container { 
+                        display: flex; 
+                        flex-direction: column; 
+                        justify-content: center; 
+                        align-items: center; 
+                        border: 1px solid #ccc; 
+                        padding: 0; 
+                        margin: 2mm; 
+                        height: 2.9cm; 
+                        width: 7.8cm; 
                     }
-                    .qr-left {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        width: 10cm;
-                        height: 8cm;
+                    img { 
+                        width: 92%; 
+                        height: auto; 
                     }
-                    .qr-right {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        padding-left: 3px;
-                        width: 70%;
-                        height: 100%;
-                    }
-                    img {
-                        max-width: 87%;
-                        max-height: auto;
-                        border: none;
-                    }
-                    .data {
-                        font-size: 15px;
-                        text-align: left;
-                        line-height: 1.2;
+                    .barcode-code { 
+                        font-size: 4px; 
+                        text-align: center; 
+                        margin-top: 3px; 
                     }
                 }
             </style>
