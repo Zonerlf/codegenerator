@@ -59,7 +59,7 @@ function populateTable(data) {
             invoice: row[3],
             oc: row[4],
             register: row[5],
-            provider: row[5],
+            provider: row[6],
             client: row[7],
             folio: folio++
         };
