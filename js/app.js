@@ -330,8 +330,8 @@ function printQRs() {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        padding-left: 3px;
-                        width: 70%;
+                        padding-left: 1mm;
+                        width: 65%;
                         height: 100%;
                     }
                     img {
