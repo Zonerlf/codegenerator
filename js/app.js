@@ -333,7 +333,7 @@ function printQRs() {
                         height: 100%;
                     }
                     img {
-                        max-width: 87%;
+                        max-width: 92%;
                         max-height: auto;
                         border: none;
                     }
