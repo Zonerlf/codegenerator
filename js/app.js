@@ -310,7 +310,7 @@ function printQRs() {
                     .qr-container {
                         display: flex;
                         border: 1px solid #ccc;
-                        padding: 2px;
+                        padding: 0;
                         margin: 0;
                         height: 8.4cm;
                         width: 10.1cm;
@@ -323,6 +323,8 @@ function printQRs() {
                         align-items: center;
                         width: 10cm;
                         height: 8cm;
+                        padding: 0;
+                        box-sizing: border-box;
                     }
                     .qr-right {
                         display: flex;
@@ -333,8 +335,9 @@ function printQRs() {
                         height: 100%;
                     }
                     img {
-                        max-width: 92%;
-                        max-height: auto;
+                        height: 100%;
+                        width: auto;
+                        object-fit: contain;
                         border: none;
                     }
                     .data {
