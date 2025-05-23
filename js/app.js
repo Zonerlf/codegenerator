@@ -300,7 +300,7 @@ function printQRs() {
                         grid-template-columns: repeat(2, 10.1cm);
                         grid-template-rows: repeat(3, 8.4cm);
                         column-gap: 6mm;
-                        row-gap: 0mm;
+                        row-gap: 1mm;
                         width: 21.6cm;
                         height: 27.9cm;
                         page-break-after: always;
