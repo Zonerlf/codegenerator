@@ -55,7 +55,7 @@ function populateTable(data) {
         const qrData = {
             code: row[0],
             description: row[1],
-            date: formatDate(row[2]),  // Aquí aplicamos la función formatDate
+            date: formatDate(row[2]),
             invoice: row[3],
             oc: row[4],
             register: row[5],
