@@ -52,20 +52,21 @@ function populateTable(data) {
             height: 50
         });
 
-        const qrData =
-            `Código: ${row[0]}\n` +
-            `Descripción: ${row[1]}\n` +
-            `Fecha: ${formatDate(row[2])}\n` +
-            `Factura: ${row[3]}\n` +
-            `OC: ${row[4]}\n` +
-            `Registro: ${row[5]}\n` +
-            `Proveedor: ${row[6]}\n` +
-            `Cliente: ${row[7]}\n` +
-            `Folio: ${folio++}`;
+        const qrData = {
+            code: row[0],
+            description: row[1],
+            date: formatDate(row[2]), 
+            invoice: row[3],
+            oc: row[4],
+            register: row[5],
+            provider: row[6],
+            client: row[7],
+            folio: folio++
+        };
 
         const qrCodeCanvas = document.createElement('canvas');
         qrCodeCanvas.classList.add('qr-canvas');
-        QRCode.toCanvas(canvas, qrData, (error) => {
+        QRCode.toCanvas(qrCodeCanvas, JSON.stringify(qrData), (error) => {
             if (error) console.error(error);
         });
 
@@ -309,7 +310,7 @@ function printQRs() {
                     .qr-container {
                         display: flex;
                         border: 1px solid #ccc;
-                        padding: 0;
+                        padding: 2px;
                         margin: 0;
                         height: 8.4cm;
                         width: 10.1cm;
@@ -322,21 +323,18 @@ function printQRs() {
                         align-items: center;
                         width: 10cm;
                         height: 8cm;
-                        padding: 3mm;
-                        box-sizing: border-box;
                     }
                     .qr-right {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        padding: 3mm;
+                        padding-left: 3px;
                         width: 70%;
                         height: 100%;
                     }
                     img {
-                        height: 90%;
-                        width: auto;
-                        object-fit: contain;
+                        max-width: 87%;
+                        max-height: auto;
                         border: none;
                     }
                     .data {
