@@ -52,21 +52,21 @@ function populateTable(data) {
             height: 50
         });
 
-        const qrData = {
-            code: row[0],
-            description: row[1],
-            date: formatDate(row[2]), 
-            invoice: row[3],
-            oc: row[4],
-            register: row[5],
-            provider: row[6],
-            client: row[7],
-            folio: folio++
-        };
+        const qrData = `
+        Código: ${row[0]}
+        Descripción: ${row[1]}
+        Fecha: ${formatDate(row[2])}
+        Factura: ${row[3]}
+        OC: ${row[4]}
+        Registro: ${row[5]}
+        Proveedor: ${row[6]}
+        Cliente: ${row[7]}
+        Folio: ${folio++}
+        `.trim();
 
         const qrCodeCanvas = document.createElement('canvas');
         qrCodeCanvas.classList.add('qr-canvas');
-        QRCode.toCanvas(qrCodeCanvas, JSON.stringify(qrData), (error) => {
+        QRCode.toCanvas(qrCodeCanvas, qrData, (error) => {
             if (error) console.error(error);
         });
 
@@ -264,125 +264,124 @@ document.querySelector('#print-qr-btn').addEventListener('click', printQRs);
 
 function printQRs() {
     const rows = document.querySelectorAll('#data-table tbody tr');
-    const qrData = []; // Almacenará las imágenes base64 de los QR y sus identificadores
+    const qrData = [];
 
-    // Recopilar los canvas generados para los QR y sus identificadores
+    // Recopilar datos (igual que antes)
     rows.forEach((row) => {
         const qrCodeCanvas = row.querySelector('.qr-canvas');
-        const code = row.children[0].innerText; // Obtener el valor de la primera columna (código)
-        const description = row.children[1].innerText; // Obtener la descripción
+        const code = row.children[0].innerText;
+        const description = row.children[1].innerText;
         const date = row.children[2].innerText;
         const provider = row.children[6].innerText;
         if (qrCodeCanvas) {
-            // Convertir el canvas a una imagen base64
             const qrImage = qrCodeCanvas.toDataURL('image/png');
-            qrData.push({ image: qrImage, code: code, description: description, date: date, provider: provider }); // Guardar la imagen y los datos
+            qrData.push({ image: qrImage, code, description, date, provider });
         }
     });
 
-    // Verificamos si hay QR para imprimir
     if (qrData.length > 0) {
-        // Creamos una ventana para la impresión
         const printWindow = window.open('', '', 'width=800,height=600');
-        printWindow.document.write('<html><head><title>Impresión de Códigos QR</title>');
         printWindow.document.write(`
-            <style>
-                @media print {
-                    @page {
-                        margin: 0;
-                    }
-                    body {
-                        font-family: Arial, sans-serif;
-                        margin: 0;
-                    }
-                    .page {
-                        display: grid;
-                        grid-template-columns: repeat(2, 10.1cm);
-                        grid-template-rows: repeat(3, 8.4cm);
-                        column-gap: 6mm;
-                        row-gap: 0mm;
-                        width: 21.6cm;
-                        height: 27.9cm;
-                        page-break-after: always;
-                        padding: 15mm 3mm;
-                        box-sizing: border-box;
-                    }
-                    .qr-container {
-                        display: flex;
-                        border: 1px solid #ccc;
-                        padding: 0;
-                        margin: 0;
-                        height: 8.4cm;
-                        width: 10.1cm;
-                        box-sizing: border-box;
-                    }
-                    .qr-left {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        width: 10cm;
-                        height: 8cm;
-                        padding: 5mm;
-                        box-sizing: border-box;
-                    }
-                    .qr-right {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        padding: 3mm;
-                        width: 65%;
-                        height: 100%;
-                    }
-                    img {
-                        height: 75%;
-                        width: auto;
-                        object-fit: contain;
-                        border: none;
-                    }
-                    .data {
-                        font-size: 15px;
-                        text-align: left;
-                        line-height: 1.2;
-                    }
-                }
-            </style>
+            <html>
+                <head>
+                    <title>Impresión de Códigos QR</title>
+                    <style>
+                        @page {
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            size: 21.6cm 27.9cm;
+                        }
+                        body {
+                            margin: 0;
+                            padding: 0;
+                            width: 21.6cm;
+                            height: 27.9cm;
+                            font-family: Arial, sans-serif;
+                        }
+                        .page {
+                            display: grid;
+                            grid-template-columns: repeat(2, 10.1cm);
+                            grid-template-rows: repeat(3, 8.4cm);
+                            column-gap: 6mm;
+                            row-gap: 0mm;
+                            width: 21.6cm;
+                            height: 27.9cm;
+                            page-break-after: always;
+                            padding: 15mm 3mm;
+                            box-sizing: border-box;
+                        }
+                        .qr-container {
+                            display: flex;
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                            padding: 0;
+                            box-sizing: border-box;
+                        }
+                        .qr-image-container {
+                            flex: 0 0 60%; /* Aumentado a 60% del espacio */
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 1mm;
+                        }
+                        .qr-image {
+                            width: 100% !important;
+                            height: 100% !important;
+                            object-fit: contain;
+                            border: 1px solid #f0f0f0;
+                        }
+                        .qr-info {
+                            flex: 1;
+                            padding: 2mm;
+                            font-size: 9pt; /* Reducido para compensar */
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            overflow: hidden;
+                        }
+                        .qr-info div {
+                            margin-bottom: 1mm;
+                            line-height: 1.2;
+                            word-break: break-word;
+                        }
+                    </style>
+                </head>
+                <body>
         `);
-        printWindow.document.write('</head><body>');
 
-        // Dividir los QR en páginas de 40 (4x10)
-        const qrPerPage = 6; // 4 columnas × 10 filas
+        // Dividir en páginas de 6 elementos (2 columnas × 3 filas)
+        const qrPerPage = 6;
         for (let i = 0; i < qrData.length; i += qrPerPage) {
-            const pageQrData = qrData.slice(i, i + qrPerPage); // QR para esta página
-
-            // Crear una página con una cuadrícula de 4x10
             printWindow.document.write('<div class="page">');
-            pageQrData.forEach((qr) => {
+            
+            qrData.slice(i, i + qrPerPage).forEach(qr => {
                 printWindow.document.write(`
                     <div class="qr-container">
-                        <div class="qr-left">
-                            <img src="${qr.image}" alt="Código QR">
+                        <div class="qr-image-container">
+                            <img class="qr-image" src="${qr.image}" alt="Código QR">
                         </div>
-                        <br>
-                        <div class="qr-right">
-                            <div class="data" style="font-size 18px"><strong>Código: </strong>${qr.code}</div>
-                            <div class="data" style="font-size 18px"><strong>Descripción: </strong>${qr.description}</div>
-                            <div class="data" style="font-size 18px"><strong>Fecha: </strong>${qr.date}</div>
-                            <div class="data" style="font-size 18px"><strong>Proveedor: </strong>${qr.provider}</div>
+                        <div class="qr-info">
+                            <div><strong>Código:</strong> ${qr.code}</div>
+                            <div><strong>Descripción:</strong> ${qr.description}</div>
+                            <div><strong>Fecha:</strong> ${qr.date}</div>
+                            <div><strong>Proveedor:</strong> ${qr.provider}</div>
                         </div>
                     </div>
                 `);
             });
-            printWindow.document.write('</div>'); // Cerrar la página
+            
+            printWindow.document.write('</div>');
         }
 
         printWindow.document.write('</body></html>');
         printWindow.document.close();
 
-        // Esperamos que el contenido se cargue antes de imprimir
-        printWindow.onload = function () {
-            printWindow.print();
-            printWindow.close();
+        printWindow.onload = function() {
+            setTimeout(() => {
+                printWindow.print();
+                printWindow.close();
+            }, 200);
         };
     } else {
         alert('No se encontraron códigos QR para imprimir.');
